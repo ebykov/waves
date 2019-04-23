@@ -1,0 +1,145 @@
+.animated {
+  animation-duration: 400ms;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fadeOutDown {
+  animation-name: fadeOutDown;
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0);
+  }
+}
+
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  animation-name: zoomIn;
+}
+
+@keyframes cardZoomIn {
+  from {
+    filter: blur(2px)
+    transform: scale3d(.96, .96, .96) translateY(5px)
+  }
+}
+
+.cardZoomIn {
+  animation-name: cardZoomIn
+}
+
+
+@keyframes shake {
+  0%, 100% { transform: translate3d(2px, 0, 0) rotate(0.5deg) }
+  50% { transform: translate3d(-2px, 0, 0) rotate(-0.5deg) }
+}
+
+.shake {
+  animation-name: shake
+  animation-iteration-count: 7
+}
+
+@keyframes flush {
+  0% { transform: scale(1) }
+  100% { transform: scale(0) }
+}
+
+.flush {
+  animation-name: flush
+}

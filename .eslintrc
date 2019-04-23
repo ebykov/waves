@@ -1,0 +1,10 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "func-names": ["error", "never"],
+    "no-param-reassign": 0
+  },
+  "env": {
+    "browser": true
+  }
+}
