@@ -1,6 +1,6 @@
 import { requestAnimate } from './animate';
 
-export default function makeSwipeable(el, callback) {
+export default function makeSwipeable(container, el, callback) {
   let x = 0;
   let shift = 0;
   let direction = null;
@@ -27,6 +27,8 @@ export default function makeSwipeable(el, callback) {
       el.dataset.opacity = opacity > 100 ? 100 : opacity;
       el.dataset.dir = direction;
       el.style.transform = `translate3d(${-shift}px, 0, 0)`;
+
+      container.dataset.dir = direction;
     }
 
     function up(eUp) {
@@ -48,7 +50,10 @@ export default function makeSwipeable(el, callback) {
       }
 
       direction = null;
+
+      el.removeAttribute('data-opacity');
       el.dataset.dir = '';
+      container.dataset.dir = '';
 
       document.removeEventListener('mousemove', move);
       document.removeEventListener('touchmove', move);

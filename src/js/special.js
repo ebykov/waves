@@ -49,7 +49,7 @@ class Special extends BaseSpecial {
       innerHTML: '<span>Веб 3.0</span> —<br>это концепция<br>интернета<br>будущего',
     });
     EL.eText = makeElement('div', `${CSS.main}-enter__text`, {
-      innerHTML: 'Попробуйте угадать, из чего она действительно состоит.',
+      innerHTML: 'Попробуйте угадать, из&nbsp;чего она действительно состоит.',
     });
     EL.eBtn = makeElement('div', `${CSS.main}-enter__btn`, {
       innerHTML: '<button>Начать!</button>',
@@ -67,38 +67,22 @@ class Special extends BaseSpecial {
     EL.enter.appendChild(EL.eInner);
 
     EL.q = makeElement('div', `${CSS.main}__question`);
-    // EL.pages = makeElement('div', `${CSS.main}__pages`);
 
-    // EL.controls = makeElement('div', `${CSS.main}__controls`);
-    // EL.optionL = makeElement('div', `${CSS.main}__option`, {
-    //   data: {
-    //     type: 'left',
-    //   },
-    // });
-    // EL.optionR = makeElement('div', `${CSS.main}__option`, {
-    //   data: {
-    //     type: 'right',
-    //   },
-    // });
-    // EL.optionLBtn = makeElement('button', `${CSS.main}__btn`, {
-    //   textContent: 'Вымысел 🔮',
-    // });
-    // EL.optionRBtn = makeElement('button', `${CSS.main}__btn`, {
-    //   textContent: 'Правда 🚀',
-    // });
-    //
-    // EL.optionL.appendChild(EL.optionLBtn);
-    // EL.optionR.appendChild(EL.optionRBtn);
+    EL.optionL = makeElement('div', [`${CSS.main}__option`, `${CSS.main}__option--left`], {
+      innerHTML: `${Svg.faceNo}<span>Глупость</span>`,
+      data: {
+        type: 'left',
+      },
+    });
+    EL.optionR = makeElement('div', [`${CSS.main}__option`, `${CSS.main}__option--right`], {
+      innerHTML: `${Svg.faceYes}<span>Правда</span>`,
+      data: {
+        type: 'right',
+      },
+    });
 
-    // EL.nextBtn = makeElement('button', `${CSS.main}__btn`, {
-    //   textContent: 'Далее',
-    //   data: {
-    //     click: 'continue',
-    //   },
-    // });
-
-    // EL.optionL.addEventListener('click', () => { this.answer('left'); });
-    // EL.optionR.addEventListener('click', () => { this.answer('right'); });
+    EL.optionL.addEventListener('click', () => { this.answer('left'); });
+    EL.optionR.addEventListener('click', () => { this.answer('right'); });
 
     EL.cards = makeElement('div', `${CSS.main}__cards`);
     EL.nextCards = makeElement('div', `${CSS.main}__next-cards`);
@@ -110,7 +94,7 @@ class Special extends BaseSpecial {
     EL.cTitle = makeElement('div', `${CSS.main}-card__title`, {
       innerHTML: '<div>Web 3.0 это...</div><div>Web 3.0 is...</div>',
     });
-    EL.cImg = makeElement('div', `${CSS.main}-card__img`);
+    EL.cImg = makeElement('div', [`${CSS.main}-card__img`]);
     EL.cText = makeElement('div', `${CSS.main}-card__text`);
     EL.cBottom = makeElement('div', `${CSS.main}-card__bottom`);
     EL.cCopy = makeElement('div', `${CSS.main}-card__copy`, {
@@ -156,11 +140,11 @@ class Special extends BaseSpecial {
       EL.backCard.style.webkitBackfaceVisibility = 'hidden';
     }
 
-    // EL.q.appendChild(EL.pages);
     EL.q.appendChild(EL.cards);
-    // EL.q.appendChild(EL.controls);
+    EL.q.appendChild(EL.optionL);
+    EL.q.appendChild(EL.optionR);
 
-    makeSwipeable(EL.cardWrapper, (t) => {
+    makeSwipeable(this.container, EL.cardWrapper, (t) => {
       this.answer(t, 'Swipe');
     });
 
@@ -170,7 +154,7 @@ class Special extends BaseSpecial {
       innerHTML: Svg.swipe,
     });
     EL.hText = makeElement('div', `${CSS.main}-help__text`, {
-      innerHTML: '<p>Свайпайте карточку вправо, если считаете, что правильный ответ «правда».</p><p>Влево — если «вымысел».</p>',
+      innerHTML: 'Смахните карточку вправо, если считаете утверждение правдой, и влево — если глупостью.',
     });
     EL.hBtn = makeElement('button', `${CSS.main}-help__btn`, {
       textContent: 'Понятно',
@@ -185,75 +169,44 @@ class Special extends BaseSpecial {
 
     EL.help.appendChild(EL.hInner);
 
-    // EL.nextCard = makeElement('div', [`${CSS.main}-card`, `${CSS.main}-card--next`]);
-    // EL.ncHead = makeElement('div', `${CSS.main}-card__head`);
-    // EL.ncBottom = makeElement('div', `${CSS.main}-card__bottom`);
-    // EL.ncText = makeElement('div', `${CSS.main}-card__text`);
-    // EL.ncImg = makeElement('img', `${CSS.main}-card__img`);
-    //
-    // EL.ncHead.appendChild(EL.ncImg);
-    // EL.ncBottom.appendChild(EL.ncText);
-    // EL.nextCard.appendChild(EL.ncHead);
-    // EL.nextCard.appendChild(EL.ncBottom);
-    //
-    // EL.result = makeElement('div', `${CSS.main}-result`);
-    // EL.rMain = makeElement('div', `${CSS.main}-result__main`);
-    // EL.rMainTop = makeElement('div', `${CSS.main}-result__main-top`);
-    // EL.rMainBottom = makeElement('div', `${CSS.main}-result__main-bottom`);
-    // EL.rResult = makeElement('div', `${CSS.main}-result__result`);
-    // EL.rMTCaption = makeElement('div', `${CSS.main}-result__caption`, {
-    //   data: {
-    //     text: 'Сейчас',
-    //   },
-    // });
-    // EL.rImg = makeElement('img', `${CSS.main}-result__img`);
-    // EL.rMBCaption = makeElement('div', [`${CSS.main}-result__caption`, `${CSS.main}-result__caption--2`], {
-    //   data: {
-    //     text: 'В будущем',
-    //   },
-    // });
-    // EL.rFuture = makeElement('div', `${CSS.main}-result__future`, {
-    //   textContent: 'Будущее можно узнать только после шера. Поделитесь, если интересно.',
-    // });
-    // EL.rShare = makeElement('div', `${CSS.main}-result__share`);
-    // EL.rRestart = makeElement('div', `${CSS.main}-result__restart`, {
-    //   innerHTML: `<span>Пройти ещё раз</span>${Svg.refresh}`,
-    //   data: {
-    //     click: 'restart',
-    //   },
-    // });
-    //
-    // EL.rMainTop.appendChild(EL.rResult);
-    // EL.rMainTop.appendChild(EL.rMTCaption);
-    // EL.rMainTop.appendChild(EL.rImg);
-    //
-    // EL.rMainBottom.appendChild(EL.rMBCaption);
-    // EL.rMainBottom.appendChild(EL.rFuture);
-    // EL.rMainBottom.appendChild(EL.rShare);
-    // EL.rMainBottom.appendChild(EL.rRestart);
-    //
-    // EL.rMain.appendChild(EL.rMainTop);
-    // EL.rMain.appendChild(EL.rMainBottom);
-    //
-    // EL.rContent = makeElement('div', `${CSS.main}-result__content`);
-    // EL.rLogo = makeElement('div', `${CSS.main}-result__logo`, {
-    //   innerHTML: Svg.logo,
-    // });
-    // EL.rText = makeElement('div', `${CSS.main}-result__text`, {
-    //   innerHTML: Data.result.text,
-    // });
-    // EL.rLink = makeElement('a', `${CSS.main}-result__btn`, {
-    //   href: Data.result.link,
-    //   target: '_blank',
-    //   textContent: 'Узнать о вакансиях',
-    // });
-    //
-    // EL.rContent.appendChild(EL.rLogo);
-    // EL.rContent.appendChild(EL.rText);
-    // EL.rContent.appendChild(EL.rLink);
-    //
-    // EL.result.appendChild(EL.rMain);
-    // EL.result.appendChild(EL.rContent);
+    EL.final = makeElement('div', `${CSS.main}-final`);
+    EL.fMain = makeElement('div', `${CSS.main}-final__main`);
+    EL.fExtra = makeElement('div', `${CSS.main}-final__extra`);
+
+    EL.fImg = makeElement('div', `${CSS.main}-final__img`, {
+      innerHTML: Svg.emoji,
+    });
+    EL.fResult = makeElement('div', `${CSS.main}-final__result`);
+    EL.fTitle = makeElement('div', `${CSS.main}-final__title`);
+    EL.fShare = makeElement('div', `${CSS.main}-final__share`);
+    EL.fRestart = makeElement('div', `${CSS.main}-final__restart`, {
+      innerHTML: `<div class="${CSS.main}-final__restart-btn" data-click="restart"><span>Пройти еще раз</span>${Svg.refresh}</div>`,
+    });
+
+    EL.fLogo = makeElement('div', `${CSS.main}-final__logo`, {
+      innerHTML: Svg.logo,
+    });
+    EL.fText = makeElement('div', `${CSS.main}-final__text`, {
+      innerHTML: Data.result.text,
+    });
+    EL.fBtn = makeElement('a', `${CSS.main}-final__btn`, {
+      textContent: 'Подробнее',
+      href: Data.result.link,
+      target: '_blank',
+    });
+
+    EL.fMain.appendChild(EL.fImg);
+    EL.fMain.appendChild(EL.fResult);
+    EL.fMain.appendChild(EL.fTitle);
+    EL.fMain.appendChild(EL.fShare);
+    EL.fMain.appendChild(EL.fRestart);
+
+    EL.fExtra.appendChild(EL.fLogo);
+    EL.fExtra.appendChild(EL.fText);
+    EL.fExtra.appendChild(EL.fBtn);
+
+    EL.final.appendChild(EL.fMain);
+    EL.final.appendChild(EL.fExtra);
   }
 
   hideHelp() {
@@ -273,13 +226,13 @@ class Special extends BaseSpecial {
   //   return EL.nextCard;
   // }
 
-  static changeCardImages(index) {
-    const q = Data.questions[index];
-
-    // EL.cImg.src = q.images.main['1x'];
-    // EL.cImg.srcset = `${q.images.main['2x']} 2x`;
-    // EL.cImg.dataset.id = q.id + 1;
-  }
+  // static changeCardImages(index) {
+  //   const q = Data.questions[index];
+  //
+  //   // EL.cImg.src = q.images.main['1x'];
+  //   // EL.cImg.srcset = `${q.images.main['2x']} 2x`;
+  //   // EL.cImg.dataset.id = q.id + 1;
+  // }
 
   showCount() {
     const index = this.activeIndex + 1;
@@ -303,21 +256,21 @@ class Special extends BaseSpecial {
     }
   }
 
-  // static getResult(score) {
-  //   let result = {};
-  //   let index = 0;
-  //
-  //   Data.results.some((item, i) => {
-  //     if (item.range[0] <= score && item.range[1] >= score) {
-  //       result = item;
-  //       index = i;
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //
-  //   return { result, index };
-  // }
+  static getResult(score) {
+    let result = {};
+    let index = 0;
+
+    Data.results.some((item, i) => {
+      if (item.range[0] <= score && item.range[1] >= score) {
+        result = item;
+        index = i;
+        return true;
+      }
+      return false;
+    });
+
+    return { result, index };
+  }
 
   // onOptionHover(e) {
   //   let textL = `<div>Или свайпни карточку влево</div>${Svg.swipeL}`;
@@ -345,6 +298,26 @@ class Special extends BaseSpecial {
   //   el.addEventListener('click', onOptionLeave);
   // }
 
+  onOptionHover(e) {
+    if (this.isAnswered || this.activeIndex > 0) return;
+
+    const el = e.currentTarget;
+    const t = el.dataset.type;
+    const hint = makeElement('div', [`${CSS.main}__option-hint`, `${CSS.main}__option-hint--${t}`], {
+      innerHTML: t === 'left' ? `<div>Или свайпни карточку влево</div>${Svg.swipeL}` : `${Svg.swipeR}<div>Или свайпни карточку вправо</div>`,
+    });
+
+    el.appendChild(hint);
+
+    const onOptionLeave = () => {
+      el.removeEventListener('mouseout', onOptionLeave);
+      el.removeEventListener('click', onOptionLeave);
+      el.removeChild(hint);
+    };
+    el.addEventListener('mouseout', onOptionLeave);
+    el.addEventListener('click', onOptionLeave);
+  }
+
   start() {
     this.container.removeChild(EL.enter);
     this.container.appendChild(EL.q);
@@ -360,36 +333,31 @@ class Special extends BaseSpecial {
       this.container.appendChild(EL.help);
       animate(EL.help, 'fadeIn', '200ms', '400ms');
     } else {
-      // EL.optionL.addEventListener('mouseover', this.onOptionHover.bind(this));
-      // EL.optionR.addEventListener('mouseover', this.onOptionHover.bind(this));
+      EL.optionL.addEventListener('mouseover', this.onOptionHover.bind(this));
+      EL.optionR.addEventListener('mouseover', this.onOptionHover.bind(this));
     }
-
-    Special.changeCardImages(this.activeIndex);
 
     this.initCardEvents();
 
-    Analytics.sendEvent(`${this.typeShowing} - Start`, 'Show');
+    Analytics.sendEvent(`${this.typeShowing} — Start`);
   }
 
-  // restart() {
-  //   shuffle(Data.questions, 'partner');
-  //
-  //   this.container.classList.remove('is-result');
-  //   this.container.removeChild(EL.result);
-  //   this.container.appendChild(EL.q);
-  //
-  //   EL.nextBtn.textContent = 'Далее';
-  //   EL.nextBtn.dataset.click = 'continue';
-  //
-  //   this.setInitialParams();
-  //   this.initCardEvents();
-  //
-  //   Special.changeCardImages(this.activeIndex);
-  //
-  //   this.makeNextQuestion();
-  //
-  //   Analytics.sendEvent(`${this.typeShowing} - Restart`);
-  // }
+  restart() {
+    shuffle(Data.questions);
+
+    this.container.classList.remove('is-result');
+    this.container.removeChild(EL.final);
+    this.container.appendChild(EL.q);
+
+    EL.bcAnswerBtn.dataset.click = 'continue';
+
+    this.setInitialParams();
+    this.initCardEvents();
+
+    this.makeNextQuestion();
+
+    Analytics.sendEvent(`${this.typeShowing} — Restart`);
+  }
 
   continue(el, e, trigger = 'Click') {
     if (this.animationInProgress) {
@@ -400,49 +368,30 @@ class Special extends BaseSpecial {
 
     this.activeIndex += 1;
 
-    // if (this.activeIndex === 1) {
-    //   EL.optionLBtn.classList.add('is-big');
-    //   EL.optionLBtn.textContent = '🔮';
-    //
-    //   EL.optionRBtn.classList.add('is-big');
-    //   EL.optionRBtn.textContent = '🚀';
-    // }
-
     const animationClassName = this.lastAnsweredType === 'left' ? 'fadeOutLeft' : 'fadeOutRight';
 
     animate(EL.cardWrapper, animationClassName).then(() => {
+      this.container.dataset.dir = '';
       this.container.classList.remove('is-answered');
-
       this.container.classList.remove('is-correct');
       this.container.classList.remove('is-incorrect');
 
       EL.cards.removeChild(EL.cardWrapper);
       EL.cardInner.style.transform = '';
 
-      // EL.backCard.classList.remove('is-correct');
-      // EL.backCard.classList.remove('is-incorrect');
-      // EL.bcAnswerImg.src = '';
-      // EL.bcAnswerImg.srcset = '';
-
       this.makeNextQuestion();
     });
 
-    Analytics.sendEvent(`${this.typeShowing} - Next`, trigger);
+    Analytics.sendEvent(`${this.typeShowing} — Next`, trigger);
   }
 
   makeNextQuestion() {
     const question = Data.questions[this.activeIndex];
 
     this.isAnswered = false;
-
-    // removeChildren(EL.controls);
-    // EL.controls.appendChild(EL.optionL);
-    // EL.controls.appendChild(EL.optionR);
-
-    // EL.pages.innerHTML = `${this.activeIndex + 1}/${Data.questions.length}`;
     EL.cPages.innerHTML = `<span>${this.activeIndex + 1}</span> /${Data.questions.length}`;
 
-    EL.cImg.innerHTML = question.img;
+    EL.cImg.innerHTML = `<div data-index="${question.id + 1}">${question.img.repeat(5)}</div>`;
     EL.cText.innerHTML = question.text;
 
     this.showCount();
@@ -455,13 +404,15 @@ class Special extends BaseSpecial {
     if (this.isAnswered) { return; }
     this.isAnswered = true;
 
+    this.container.dataset.dir = t;
+
     const question = Data.questions[this.activeIndex];
 
     this.lastAnsweredType = t;
 
     this.makeAnswer(question, t);
 
-    Analytics.sendEvent(`${this.typeShowing} - (Question index: ${this.activeIndex},  id: ${question.id}) - Option - ${t}`, trigger);
+    Analytics.sendEvent(`${this.typeShowing} — (Question index: ${this.activeIndex},  id: ${question.id}) — Option: ${t}`, trigger);
   }
 
   makeAnswer(question, type) {
@@ -494,7 +445,7 @@ class Special extends BaseSpecial {
 
     if (this.activeIndex < Data.questions.length - 1) {
       this.timer = setTimeout(() => {
-        Special.changeCardImages(this.activeIndex + 1);
+        // Special.changeCardImages(this.activeIndex + 1);
         EL.cards.style.perspective = 'none';
         this.animationInProgress = false;
       }, 600);
@@ -505,38 +456,34 @@ class Special extends BaseSpecial {
     }
   }
 
-  // result(el, e, trigger = 'Click') {
-  //   const { result, index } = Special.getResult(this.correctAnswers);
-  //
-  //   EL.cards.removeChild(EL.cardWrapper);
-  //   EL.cardInner.style.transform = '';
-  //
-  //   EL.backCard.classList.remove('is-correct');
-  //   EL.backCard.classList.remove('is-incorrect');
-  //   EL.bcAnswerImg.src = '';
-  //   EL.bcAnswerImg.srcset = '';
-  //
-  //   this.container.classList.remove('is-answered');
-  //   this.container.classList.add('is-result');
-  //   this.container.removeChild(EL.q);
-  //   this.container.appendChild(EL.result);
-  //
-  //   EL.rResult.innerHTML = `${this.correctAnswers} из ${Data.questions.length} правильных ответов`;
-  //   EL.rImg.dataset.id = index + 1;
-  //   EL.rImg.src = result.img;
-  //   EL.rImg.srcset = `${result.img2x} 2x`;
-  //
-  //   removeChildren(EL.rShare);
-  //   Share.make(EL.rShare, {
-  //     url: `${this.params.share.url}/${index + 1}`,
-  //     title: `${this.correctAnswers} из ${Data.questions.length} правильных ответов`,
-  //     twitter: `${this.correctAnswers} из ${Data.questions.length} правильных ответов`,
-  //   });
-  //
-  //   this.destroyCardEvents();
-  //
-  //   Analytics.sendEvent(`${this.typeShowing} - Result`, trigger);
-  // }
+  result(el, e, trigger = 'Click') {
+    const { result, index } = Special.getResult(this.correctAnswers);
+
+    EL.cards.style.perspective = '';
+    EL.cardInner.style.transform = '';
+
+    this.container.dataset.dir = '';
+    this.container.classList.remove('is-correct');
+    this.container.classList.remove('is-incorrect');
+    this.container.classList.remove('is-answered');
+    this.container.classList.add('is-result');
+    this.container.removeChild(EL.q);
+    this.container.appendChild(EL.final);
+
+    EL.fResult.innerHTML = `<b>${this.correctAnswers} из ${Data.questions.length}</b> правильных ответов`;
+    EL.fTitle.innerHTML = result.text;
+
+    removeChildren(EL.fShare);
+    Share.make(EL.fShare, {
+      url: `${this.params.share.url}/${index + 1}`,
+      title: this.params.share.title,
+      twitter: this.params.share.title,
+    });
+
+    this.destroyCardEvents();
+
+    Analytics.sendEvent(`${this.typeShowing} — Result`, trigger);
+  }
 
   setInitialParams() {
     this.activeIndex = 0;
@@ -561,9 +508,9 @@ class Special extends BaseSpecial {
     document.addEventListener('keyup', this.keyUpHandler);
   }
 
-  // destroyCardEvents() {
-  //   document.removeEventListener('keyup', this.keyUpHandler);
-  // }
+  destroyCardEvents() {
+    document.removeEventListener('keyup', this.keyUpHandler);
+  }
 
   // static loadImages() {
   //   Data.questions.forEach((q, i) => {
@@ -587,6 +534,7 @@ class Special extends BaseSpecial {
     // Special.loadImages();
 
     // this.start();
+    Analytics.sendEvent(`${this.typeShowing} — Show`, 'Init');
   }
 }
 
