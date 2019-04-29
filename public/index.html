@@ -28,6 +28,21 @@
         padding-top: 50px;
         overflow: hidden;
     }
+    .wrapper[air-module="module.feed"] {
+        width: 100%;
+    }
+    @media (min-width: 680px) {
+        .wrapper[air-module="module.feed"] {
+            width: 640px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+    }
+    @media (min-width: 1025px) {
+        .wrapper[air-module="module.feed"] {
+            margin: 0 0 0 80px;
+        }
+    }
     .wrapper > span {
         position: fixed;
         z-index: 999;
@@ -39,10 +54,21 @@
         height: 50px;
         background-color: #feebef;
     }
+    .toggle {
+        position: fixed;
+        z-index: 9999;
+        top: 10px;
+        left: 10px;
+        user-select: none;
+    }
 </style>
 
-<div class="wrapper">
+<div id="wrapper" class="wrapper">
     <span></span>
+    <label class="toggle">
+        <input type="checkbox" id="feed-toggle">
+        feed
+    </label>
     <div style="width: 1060px; max-width: 100%;">
         <div id="waves-special" class="waves"></div>
     </div>
@@ -69,6 +95,24 @@
     }
     d.body.appendChild(s);
   })(document, 0);
+
+  (function(d, w) {
+    var toggle = d.getElementById('feed-toggle');
+    var wrapper = d.getElementById('wrapper');
+    var specialContainer = d.getElementById('waves-special');
+
+    toggle.addEventListener('change', function () {
+      if (this.checked) {
+        wrapper.setAttribute('air-module', 'module.feed');
+        specialContainer.classList.remove('is-not-feed');
+        specialContainer.classList.add('is-feed');
+      } else {
+        wrapper.removeAttribute('air-module');
+        specialContainer.classList.remove('is-feed');
+        specialContainer.classList.add('is-not-feed');
+      }
+    });
+  })(document, window);
 </script>
 
 </body>

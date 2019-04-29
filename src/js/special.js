@@ -430,13 +430,13 @@ class Special extends BaseSpecial {
       // EL.backCard.classList.add('is-correct');
       // EL.bcAnswerImg.src = question.images.correct['1x'];
       // EL.bcAnswerImg.srcset = `${question.images.correct['2x']} 2x`;
-      EL.bcAnswerTitle.textContent = 'Да';
+      EL.bcAnswerTitle.textContent = 'Верно';
     } else {
       this.container.classList.add('is-incorrect');
       // EL.backCard.classList.add('is-incorrect');
       // EL.bcAnswerImg.src = question.images.incorrect['1x'];
       // EL.bcAnswerImg.srcset = `${question.images.incorrect['2x']} 2x`;
-      EL.bcAnswerTitle.textContent = 'Нет';
+      EL.bcAnswerTitle.textContent = 'Неверно';
     }
 
     // EL.bcAnswerImg.dataset.id = question.id + 1;

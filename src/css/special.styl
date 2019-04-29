@@ -21,9 +21,10 @@ colors = {
   background-color: #fff
   overflow: hidden
 
-  @media $mq.desktop
-    min-height: 610px
-    padding: 0
+  ^[0].is-not-feed &
+    @media $mq.desktop
+      min-height: 610px
+      padding: 0
 
   &.is-result
     min-height: auto
@@ -57,8 +58,9 @@ colors = {
     @media $mq.notMobile
       padding: 90px 0 0 25px
 
-    @media $mq.desktop
-      padding: 90px 0 0 70px
+    ^[0].is-not-feed &
+      @media $mq.desktop
+        padding: 90px 0 0 70px
 
     &__logo
       position: absolute
@@ -100,15 +102,16 @@ colors = {
         width: 190px
         height: 290px
 
-      @media $mq.notMobile
-        top: 115px
-        left: auto
-        right: 0
-        width: 254px
-        height: 390px
+      ^[0].is-not-feed &
+        @media $mq.notMobile
+          top: 115px
+          left: auto
+          right: 0
+          width: 254px
+          height: 390px
 
-      @media $mq.desktop
-        right: 140px
+        @media $mq.desktop
+          right: 140px
 
     &__inner
       position: relative
@@ -125,17 +128,19 @@ colors = {
         color: colors.main
         font-weight: 900
 
-      @media $mq.notMobile
-        font-size: 55px
+      ^[0].is-not-feed &
+        @media $mq.notMobile
+          font-size: 55px
 
     &__text
       width: 225px
       margin-top: 30px
       font-size: 20px
 
-      @media $mq.notMobile
-        width: auto
-        font-size: 25px
+      ^[0].is-not-feed &
+        @media $mq.notMobile
+          width: auto
+          font-size: 25px
 
     &__btn
       position: relative
@@ -178,11 +183,24 @@ colors = {
 
   &__question
     position: relative
-    padding-top: 60px
+    width: 280px
+    padding-top: 30px
     padding-bottom: 100px
+
+    @media $mq.iphone6
+      width: 320px
+      margin: 0 auto
+
+    @media (min-width: 480px)
+      width: auto
+      margin: 0
 
     @media $mq.notMobile
       padding-bottom: 0
+
+    ^[0].is-not-feed &
+      @media $mq.desktop
+        padding-top: 60px
 
   &__option
     position: absolute
@@ -229,14 +247,18 @@ colors = {
         top: 0
         transform: translate3d(-260px, 0, 0)
 
-      @media $mq.desktop
-        transform: translate3d(-350px, 0, 0)
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          transform: translate3d(-350px, 0, 0)
 
       ^[0][data-dir="left"] &
         color: #000
 
         & [data-type="face"]
-          transform: translate3d(3px,-2px,0)
+          transform: translate3d(0,-4px,0)
+
+          @media $mq.notMobile
+            transform: translate3d(3px,-2px,0)
 
     &--right
       transform: translate3d(50px, 0, 0)
@@ -245,14 +267,18 @@ colors = {
         top: 0
         transform: translate3d(260px, 0, 0)
 
-      @media $mq.desktop
-        transform: translate3d(350px, 0, 0)
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          transform: translate3d(350px, 0, 0)
 
       ^[0][data-dir="right"] &
         color: #000
 
         & [data-type="face"]
-          transform: translate3d(-3px,-2px,0)
+          transform: translate3d(0,-4px,0)
+
+          @media $mq.notMobile
+            transform: translate3d(-3px,-2px,0)
 
   &__option-hint
     position: absolute
@@ -282,7 +308,7 @@ colors = {
     z-index: 3
     width: 350px
     max-width: 100%
-    height: 480px
+    height: 380px
     margin: 0 auto
 
     &::before
@@ -309,6 +335,9 @@ colors = {
       ^[0].is-incorrect &
         background-color: colors.incorrect
 
+    @media $mq.iphone6
+      height: 480px
+
   &__next-cards
     position: absolute
     z-index: 1
@@ -322,12 +351,15 @@ colors = {
       right: 0
       margin: 0 auto
       width: 100%
-      height: 480px
+      height: 380px
       border-radius: 15px
       background-color: colors.main
       box-shadow: 0 3px 3px rgba(0,0,0,.1)
       transform-origin : 50% 100%
       overflow: hidden
+
+      @media $mq.iphone6
+        height: 480px
 
       &:nth-child(1)
         z-index: 4
@@ -369,12 +401,15 @@ colors = {
   &__card-inner
     position: relative
     width: 100%
-    height: 480px
+    height: 380px
     transform-style: preserve-3d
     transform: translate3d(0,0,0)
     transition: transform .6s linear
     will-change: transform
     cursor: grab
+
+    @media $mq.iphone6
+      height: 480px
 
   &-card
     position: absolute
@@ -382,9 +417,9 @@ colors = {
     top: 0
     left: 0
     right: 0
-    height: 480px
-    padding: 26px 20px 42px 20px
-    border: 10px solid colors.main
+    height: 380px
+    padding: 16px 10px 32px
+    border: 5px solid colors.main
     border-radius: 15px
     background-color: #fff
     user-select: none
@@ -392,15 +427,23 @@ colors = {
     transform: translate3d(0,0,0)
     transition: background-color .2s
 
+    @media $mq.iphone6
+      height: 480px
+      padding: 26px 20px 42px
+      border-width: 10px
+
     &::after
       content: ''
       position: absolute
-      top: 34px
+      top: 24px
       right: 20px
       width: 18px
       height: 18px
       background-color: colors.main
       transform: rotate(45deg)
+
+      @media $mq.iphone6
+        top: 34px
 
     ^[0].is-answered &
       backface-visibility: hidden
@@ -448,25 +491,35 @@ colors = {
         font-weight: 700
 
       & > div:nth-child(2)
-        margin-top: 12px
         font-size: 12px
         font-weight: 700
         text-transform: uppercase
 
+        @media $mq.iphone6
+          margin-top: 12px
+
     &__img
-      display: flex
-      justify-content: center
-      margin-top: 16px
+      margin-top: 10px
       transform: translate3d(0,0,0)
+
+      @media $mq.iphone6
+        margin-top: 16px
 
       & > div
         position: relative
         margin: 0 auto
 
+        &::before
+          content ''
+          display: block
+          padding-top: 81%
+
         & > svg
           position: absolute
           top: 0
           left: 0
+          width: 100%
+          height: 100%
 
           &:nth-child(1)
             fill: blue
@@ -486,54 +539,21 @@ colors = {
             clip: rect(0, 0, 0, 0)
             animation: wavesPictureAnim4 4.3s .2s steps(1) infinite
 
-        &[data-index="1"]
-          width: 223px
-          height: 235px
-
-        &[data-index="2"]
-          width: 154px
-          height: 235px
-
-        &[data-index="3"]
-          width: 155px
-          height: 235px
-
-        &[data-index="4"]
-          width: 211px
-          height: 235px
-
-        &[data-index="5"]
-          width: 167px
-          height: 235px
-
-        &[data-index="6"]
-          width: 130px
-          height: 203px
-
-        &[data-index="7"]
-          width: 251px
-          height: 200px
-
-        &[data-index="8"]
-          width: 155px
-          height: 235px
-
-        &[data-index="9"]
-          width: 120px
-          height: 235px
-
-        &[data-index="10"]
-          width: 217px
-          height: 235px
+        &[data-index="6"]::before
+        &[data-index="7"]::before
+          padding-top: 68%
 
     &__text
       margin-top: 10px
-      font-size: 24px
+      font-size: 20px
       font-weight: 700
       line-height: 1.143em
       transform: translate3d(0,0,0)
 
       @media $mq.iphone6
+        font-size: 24px
+
+      @media $mq.notMobile
         font-size: 28px
 
     &__bottom
@@ -545,8 +565,11 @@ colors = {
       display: flex
       justify-content: space-between
       align-items: flex-end
-      padding: 0 20px 20px
+      padding: 0 10px 10px
       transform: translate3d(0,0,0)
+
+      @media $mq.iphone6
+        padding: 0 20px 20px
 
     &__copy
       margin-bottom: 1px
@@ -579,9 +602,12 @@ colors = {
       transform: translate3d(0,0,0)
 
     &__answer-title
-      font-size: 32px
+      font-size: 28px
       font-weight: 700
       transform: translate3d(0,0,0)
+
+      @media $mq.iphone6
+        font-size: 32px
 
       ^[0].is-correct &
         color: colors.correct
@@ -590,10 +616,14 @@ colors = {
         color: colors.incorrect
 
     &__answer-text
-      margin-top: 40px
-      font-size: 20px
+      margin-top: 24px
+      font-size: 18px
       font-weight: 500
       transform: translate3d(0,0,0)
+
+      @media $mq.iphone6
+        margin-top: 40px
+        font-size: 20px
 
       & a
         color: colors.main !important
@@ -644,23 +674,25 @@ colors = {
     @media $mq.mobile
       flex-direction: column
 
-    @media $mq.desktop
-      min-height: 610px
+    ^[0].is-not-feed &
+      @media $mq.desktop
+        min-height: 610px
 
     &__main
       padding: 30px 15px 20px
       background-color: colors.main
 
-      @media $mq.notMobile
-        flex-shrink: 0
-        width: 43.4%
-        padding: 45px 25px 20px
+      ^[0].is-not-feed &
+        @media $mq.notMobile
+          flex-shrink: 0
+          width: 43.4%
+          padding: 45px 25px 20px
 
-      @media (min-width: 812px)
-        padding: 85px 60px 40px
+        @media (min-width: 812px)
+          padding: 85px 60px 40px
 
-      @media $mq.desktop
-        padding: 115px 80px 20px
+        @media $mq.desktop
+          padding: 115px 80px 20px
 
     &__img
       width: 290px
@@ -675,9 +707,10 @@ colors = {
       margin-top: 35px
       color: #fff
 
-      @media $mq.desktop
-        margin-top: 50px
-        font-size: 20px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 50px
+          font-size: 20px
 
     &__title
       margin-top: 18px
@@ -686,16 +719,18 @@ colors = {
       font-weight: 700
       line-height: 1.167em
 
-      @media $mq.desktop
-        margin-top: 26px
-        font-size: 30px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 26px
+          font-size: 30px
 
     &__share
       min-height: 55px
       margin-top: 26px
 
-      @media $mq.desktop
-        margin-top: 38px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 38px
 
     &__restart
       display: flex
@@ -703,8 +738,9 @@ colors = {
       align-items: center
       margin-top: 28px
 
-      @media $mq.desktop
-        margin-top: 40px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 40px
 
     &__restart-btn
       position: relative
@@ -729,14 +765,15 @@ colors = {
       position: relative
       padding: 30px 15px 20px
 
-      @media $mq.notMobile
-        padding: 68px 25px 20px
+      ^[0].is-not-feed &
+        @media $mq.notMobile
+          padding: 68px 25px 20px
 
-      @media (min-width: 812px)
-        padding: 108px 60px 40px
+        @media (min-width: 812px)
+          padding: 108px 60px 40px
 
-      @media $mq.desktop
-        padding: 138px 80px 20px
+        @media $mq.desktop
+          padding: 138px 80px 20px
 
     &__logo
       width: 140px
@@ -750,9 +787,10 @@ colors = {
       margin-top: 22px
       font-size: 22px
 
-      @media $mq.desktop
-        margin-top: 30px
-        font-size: 30px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 30px
+          font-size: 30px
 
     &__btn
       display: block
@@ -772,8 +810,9 @@ colors = {
         @media $mq.notHover
           opacity: 1
 
-      @media $mq.desktop
-        margin-top: 40px
+      ^[0].is-not-feed &
+        @media $mq.desktop
+          margin-top: 40px
 
   &-help
     position: absolute
@@ -792,7 +831,7 @@ colors = {
     &__inner
       display: flex
       flex-direction: column
-      align-items: flex-start
+      align-items: center
       max-width: 220px
 
     &__icon
@@ -805,6 +844,7 @@ colors = {
         height: 100%
 
     &__text
+      width: 100%
       margin-top: 20px
       color: #fff
       font-weight: 500
