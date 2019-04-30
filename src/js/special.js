@@ -42,7 +42,7 @@ class Special extends BaseSpecial {
       innerHTML: Svg.logo,
     });
     EL.eImg = makeElement('div', `${CSS.main}-enter__img`, {
-      innerHTML: Svg.illustrations.cashback,
+      innerHTML: Svg.illustrations.cashback.repeat(5),
     });
     EL.eInner = makeElement('div', `${CSS.main}-enter__inner`);
     EL.eTitle = makeElement('div', `${CSS.main}-enter__title`, {
@@ -173,9 +173,7 @@ class Special extends BaseSpecial {
     EL.fMain = makeElement('div', `${CSS.main}-final__main`);
     EL.fExtra = makeElement('div', `${CSS.main}-final__extra`);
 
-    EL.fImg = makeElement('div', `${CSS.main}-final__img`, {
-      innerHTML: Svg.emoji,
-    });
+    EL.fImg = makeElement('div', `${CSS.main}-final__img`);
     EL.fResult = makeElement('div', `${CSS.main}-final__result`);
     EL.fTitle = makeElement('div', `${CSS.main}-final__title`);
     EL.fShare = makeElement('div', `${CSS.main}-final__share`);
@@ -272,39 +270,13 @@ class Special extends BaseSpecial {
     return { result, index };
   }
 
-  // onOptionHover(e) {
-  //   let textL = `<div>Или свайпни карточку влево</div>${Svg.swipeL}`;
-  //   let textR = `${Svg.swipeR}<div>Или свайпни карточку вправо</div>`;
-  //
-  //   if (this.isAnswered || this.activeIndex > 0) {
-  //     textL = 'Вымысел';
-  //     textR = 'Правда';
-  //   }
-  //
-  //   const el = e.currentTarget;
-  //   const t = el.dataset.type;
-  //   const hint = makeElement('div', [`${CSS.main}__option-hint`, `${CSS.main}__option-hint--${t}`], {
-  //     innerHTML: t === 'left' ? textL : textR,
-  //   });
-  //
-  //   el.appendChild(hint);
-  //
-  //   const onOptionLeave = () => {
-  //     el.removeEventListener('mouseout', onOptionLeave);
-  //     el.removeEventListener('click', onOptionLeave);
-  //     el.removeChild(hint);
-  //   };
-  //   el.addEventListener('mouseout', onOptionLeave);
-  //   el.addEventListener('click', onOptionLeave);
-  // }
-
   onOptionHover(e) {
     if (this.isAnswered || this.activeIndex > 0) return;
 
     const el = e.currentTarget;
     const t = el.dataset.type;
     const hint = makeElement('div', [`${CSS.main}__option-hint`, `${CSS.main}__option-hint--${t}`], {
-      innerHTML: t === 'left' ? `<div>Или свайпни карточку влево</div>${Svg.swipeL}` : `${Svg.swipeR}<div>Или свайпни карточку вправо</div>`,
+      innerHTML: t === 'left' ? `<div>Или свайпните карточку влево</div>${Svg.swipeL}` : `${Svg.swipeR}<div>Или свайпните карточку вправо</div>`,
     });
 
     el.appendChild(hint);
@@ -470,6 +442,7 @@ class Special extends BaseSpecial {
     this.container.removeChild(EL.q);
     this.container.appendChild(EL.final);
 
+    EL.fImg.innerHTML = result.img;
     EL.fResult.innerHTML = `<b>${this.correctAnswers} из ${Data.questions.length}</b> правильных ответов`;
     EL.fTitle.innerHTML = result.text;
 
