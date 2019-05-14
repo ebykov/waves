@@ -192,6 +192,9 @@ class Special extends BaseSpecial {
       href: Data.result.link,
       target: '_blank',
     });
+    EL.fCopy = makeElement('div', `${CSS.main}-final__copy`, {
+      innerHTML: 'ООО «Вейвз»',
+    });
 
     EL.fMain.appendChild(EL.fImg);
     EL.fMain.appendChild(EL.fResult);
@@ -202,6 +205,7 @@ class Special extends BaseSpecial {
     EL.fExtra.appendChild(EL.fLogo);
     EL.fExtra.appendChild(EL.fText);
     EL.fExtra.appendChild(EL.fBtn);
+    EL.fExtra.appendChild(EL.fCopy);
 
     EL.final.appendChild(EL.fMain);
     EL.final.appendChild(EL.fExtra);

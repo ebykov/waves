@@ -912,6 +912,23 @@ colors = {
         @media $mq.desktop
           margin-top: 40px
 
+    &__copy
+      position: absolute
+      bottom: 5px
+      right: 10px
+      color: #838383
+      font-size: 12px
+
+      ^[0].is-not-feed &
+
+        @media $mq.notMobile
+          bottom: 20px
+          right: 60px
+
+        @media $mq.desktop
+          bottom: 60px
+          right: 80px
+
   &-help
     position: absolute
     z-index: 99
